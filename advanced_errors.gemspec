@@ -1,6 +1,6 @@
 spec = Gem::Specification.new do |s|
   s.name        = 'advanced_errors'
-  s.version     = '1.0.0'
+  s.version     = '1.0.1'
   s.author      = 'Mark Catley'
   s.email       = 'mark@nexx.co.nz'
   s.homepage    = 'http://github.com/markcatley/advanced_errors'
