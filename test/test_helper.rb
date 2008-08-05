@@ -1,5 +1,7 @@
+require 'rubygems'
+require 'active_support'
+require 'active_record'
 require File.dirname(__FILE__) + '/../rails/init'
-require 'active_support/core_ext'
 
 ActiveRecord::Base.configurations = {'sqlite3' => {:adapter => 'sqlite3', :database => ':memory:'}}
 ActiveRecord::Base.establish_connection('sqlite3')
