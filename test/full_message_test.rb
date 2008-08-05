@@ -1,4 +1,5 @@
 require 'test/unit'
+require File.dirname(__FILE__) + File::SEPARATOR + 'test_helper'
 
 class AdvancedErrorsTest < Test::Unit::TestCase
   def test_should_render_errors
