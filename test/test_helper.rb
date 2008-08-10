@@ -1,6 +1,8 @@
 require 'rubygems'
 require 'active_support'
 require 'active_record'
+require 'action_controller'
+require 'action_view'
 require File.dirname(__FILE__) + '/../rails/init'
 
 ActiveRecord::Base.configurations = {'sqlite3' => {:adapter => 'sqlite3', :database => ':memory:'}}
@@ -26,9 +28,9 @@ end
 
 class User < ActiveRecord::Base
   has_many :emails
-  validates_presence_of :login, :password
+  validates_presence_of :login, :message => "^You really should have a login."
+  validates_presence_of :password
   attr_accessible :login, :password
-  attr_accessor   :password_confirmation
 end
 
 class Email < ActiveRecord::Base
@@ -38,3 +40,23 @@ class Email < ActiveRecord::Base
 end
 
 class Account < ActiveRecord::Base; end
+
+class String
+  def colapse_whitespace
+    gsub(/\s+/, ' ')
+  end
+  
+  def remove_unnessisary_spaces_from_html
+    gsub(/>\s+</, '><')
+  end
+  
+  def normalize_html
+    colapse_whitespace.remove_unnessisary_spaces_from_html.strip
+  end
+end
+
+module ErrorHelper
+  include ActionView::Helpers::TagHelper
+  include ActionView::Helpers::TextHelper
+  include ActionView::Helpers::ActiveRecordHelper
+end
