@@ -1,4 +1,3 @@
-require 'test/unit'
 require File.dirname(__FILE__) + File::SEPARATOR + 'test_helper'
 
 class AdvancedErrorsTest < Test::Unit::TestCase
@@ -24,7 +23,7 @@ class AdvancedErrorsTest < Test::Unit::TestCase
     @user = nil
   end
   
-  def should_not_display_attribute_if_caret_is_first_charactor
+  def test_should_not_display_attribute_if_caret_is_first_charactor
     @user = User.new({:password => 'blah'})
     assert !@user.valid?, 'User should be invalid'
     assert @user.errors.size == 1, 'There should only be one error.'

@@ -1,3 +1,4 @@
+require 'test/unit'
 require 'rubygems'
 require 'active_support'
 require 'active_record'
@@ -23,6 +24,7 @@ ActiveRecord::Schema.define(:version => 0) do
   create_table :emails do |t|
     t.references :user_id
     t.string :email_address
+    t.string :preferred_type
   end
 end
 
@@ -36,6 +38,7 @@ end
 class Email < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user, :email_address
+  validates_inclusion_of :preferred_type, :in => ['html', 'plain text']
   attr_accessible :email_address
 end
 
